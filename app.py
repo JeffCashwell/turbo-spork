@@ -27,6 +27,14 @@ def clean_currency(value):
     except ValueError:
         return 0.0
 
+def sanitize_filename(text):
+    """Removes illegal characters (slashes, colons, etc) for safe filenames."""
+    if not isinstance(text, str):
+        text = str(text)
+    # Keep only letters, numbers, spaces, dashes, and underscores
+    clean = "".join([c for c in text if c.isalpha() or c.isdigit() or c in (' ', '-', '_')])
+    return clean.strip()
+
 def generate_pdf_bytes(po_number, company_name, items_df):
     """Generates PDF and returns the binary data (RAM) instead of saving to disk."""
     buffer = io.BytesIO()
@@ -134,8 +142,16 @@ if uploaded_file is not None:
                     # Generate PDF Bytes
                     pdf_bytes = generate_pdf_bytes(po_number, company_name, details)
                     
-                    # Add to ZIP
-                    filename = f"Invoice_{str(po_number)}.pdf"
+                    # Create Filename: Name_PO.pdf (Sanitized)
+                    clean_name = sanitize_filename(company_name)
+                    clean_po = sanitize_filename(po_number)
+                    
+                    # Fallback if name ends up empty after cleaning
+                    if not clean_name: clean_name = "Invoice"
+                    
+                    filename = f"{clean_name}_{clean_po}.pdf"
+                    
+                    # Write to ZIP
                     zip_file.writestr(filename, pdf_bytes.getvalue())
                     
                     count += 1
