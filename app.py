@@ -138,7 +138,7 @@ def generate_pdf_bytes(company_name, items_df, po_number=None):
 st.title("Invoice Generator")
 st.write("""
 This app allows you to quickly create "fake" invoices associated to real vendors 
-(and purchase orders if wanted) in your environment — useful for testing and demo purposes.
+(and optionally, purchase orders) in the environment — useful for testing and demo purposes when acquiring invoices to test is not possible or limited.
 """)
 
 # Toggle for "No PO" mode
@@ -250,5 +250,6 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
 
 
