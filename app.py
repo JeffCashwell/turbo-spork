@@ -148,9 +148,10 @@ with st.expander("Show Instructions", expanded=True):
     if no_po_mode:
         st.markdown("""
         **Vendor-Only Mode Instructions:**
-        1. Export a `.csv` list of vendors by navigating to **Lists > Relationships > Vendors**. 
-        2. Ensure the CSV contains the **"Name"** field (header case-sensitive).
-        3. Upload below.
+        1. Export a '.xls' file list of vendors by navigating to **Lists > Relationships > Vendors**. 
+        2. Ensure the '.xls' contains the **"Name"** field (header case-sensitive).
+        3. Before uploading, convert the '.xls' file to '.csv'.
+        4. Upload below.
         
         **Note:** If there are a lot of records in the .csv file it's advised to remove rows so that you are generating a handful of invoices at a time.
         """)
@@ -249,3 +250,4 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
