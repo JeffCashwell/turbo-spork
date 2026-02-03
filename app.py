@@ -141,8 +141,8 @@ This app allows you to quickly create "fake" invoices associated to real vendors
 (and optionally, purchase orders) in the environment — useful for testing and demo purposes when acquiring invoices to test is not possible or limited.
 """)
 
-# Toggle for "No PO" mode
-no_po_mode = st.checkbox("Generate invoices without POs")
+# --- CHANGED: Use st.toggle for a slider switch look ---
+no_po_mode = st.toggle("Generate invoices without POs")
 
 with st.expander("Show Instructions", expanded=True):
     if no_po_mode:
@@ -250,6 +250,3 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
-
-
-
