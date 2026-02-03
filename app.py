@@ -161,9 +161,9 @@ with st.expander("Show Instructions", expanded=True):
         1. Create a Saved Search to find open Purchase Orders.
         2. Under Criteria set Type to 'is Purchase Order', set Status to 'is any of Purchase Order:Partially Received, Purchase Order:Pending Bill, etc.'
         3. Under Results set fields to **Name**, **Document Number**, **Item**, **Amount**.
-        4. Export the Saved Search to CSV and upload below.
+        4. Export the Saved Search to `.csv` and upload below.
         
-        **Note:** If there are a lot of records in the .csv file it's advised to remove rows so that you are generating a handful of invoices at a time.
+        **Note:** If there are a lot of records in the `.csv` file it's advised to remove rows so that you are generating a handful of invoices at a time.
         """)
 
 uploaded_file = st.file_uploader("Upload CSV File", type=["csv"])
@@ -250,3 +250,4 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"An error occurred: {e}")
+
